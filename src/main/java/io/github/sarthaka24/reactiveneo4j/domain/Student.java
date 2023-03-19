@@ -6,7 +6,10 @@ import lombok.NoArgsConstructor;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 import org.neo4j.springframework.data.core.schema.GeneratedValue;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -20,4 +23,6 @@ public class Student {
     private String email;
     @Relationship(type = "LIVES_IN")
     private Address address;
+    @CreatedDate
+    private LocalDateTime createdDate;
 }
