@@ -30,4 +30,9 @@ public class StudentServiceImpl implements StudentService{
     public Flux<Student> getAllStudents() {
         return this.studentRepository.findAll();
     }
+
+    @Override
+    public Mono<Student> findById(Long id) {
+        return this.studentRepository.findById(id);
+    }
 }

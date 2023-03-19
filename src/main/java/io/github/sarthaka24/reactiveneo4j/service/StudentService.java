@@ -9,4 +9,5 @@ public interface StudentService {
     void deleteStudent(Student student);
     Mono<Student> updateStudent(Student student);
     Flux<Student> getAllStudents();
+    Mono<Student> findById(Long id);
 }
