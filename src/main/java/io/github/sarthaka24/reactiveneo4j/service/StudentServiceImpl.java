@@ -9,8 +9,9 @@ import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
-public class StudentServiceImpl implements StudentService{
+public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
+
     @Override
     public Mono<Student> saveStudent(Student student) {
         return this.studentRepository.save(student);
@@ -34,5 +35,15 @@ public class StudentServiceImpl implements StudentService{
     @Override
     public Mono<Student> findById(Long id) {
         return this.studentRepository.findById(id);
+    }
+
+    @Override
+    public Mono<Student> create(String name, String email) {
+        return this.studentRepository.saveStudent1(name, email);
+    }
+
+    @Override
+    public Mono<String> emailByName(String name) {
+        return this.studentRepository.emailByName(name);
     }
 }

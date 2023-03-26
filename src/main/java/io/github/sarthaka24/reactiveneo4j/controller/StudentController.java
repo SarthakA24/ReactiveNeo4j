@@ -1,7 +1,6 @@
 package io.github.sarthaka24.reactiveneo4j.controller;
 
 import io.github.sarthaka24.reactiveneo4j.domain.Student;
-import io.github.sarthaka24.reactiveneo4j.exception.StudentNotFoundException;
 import io.github.sarthaka24.reactiveneo4j.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -37,8 +36,15 @@ public class StudentController {
     @GetMapping("/find-student/{id}")
     public Mono<Student> findStudentById(@PathVariable Long id) {
         return this.studentService.findById(id);
-//        return Mono.just(id)
-//                .flatMap(this.studentService::findById)
-//                .switchIfEmpty(Mono.error(new StudentNotFoundException("Student not found")));
+    }
+
+    @PostMapping("/create/{name}/{email}")
+    public Mono<Student> create(@PathVariable String name, @PathVariable String email) {
+        return this.studentService.create(name, email);
+    }
+
+    @GetMapping("/email/{name}")
+    public Mono<String> emailByName(@PathVariable String name) {
+        return this.studentService.emailByName(name);
     }
 }
